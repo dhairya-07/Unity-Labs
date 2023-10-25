@@ -10,10 +10,20 @@ const createCatalog = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         'You already have a catelog! Please make a patch request to xyz route',
-        401
+        400
       )
     );
   }
+
+  if (!products || products.length < 1) {
+    return next(
+      new AppError(
+        'Empty order cannot be created. Please provide a list of products to be ordered.',
+        400
+      )
+    );
+  }
+
   const { products } = req.body;
 
   const newProducts = await Product.create(products);
