@@ -42,7 +42,14 @@ const createOrder = catchAsync(async (req, res, next) => {
   const { products } = req.body;
 
   // const orderProducts = [];
-
+  if (!products || products.length < 1) {
+    return next(
+      new AppError(
+        'Empty order cannot be created. Please provide a list of products to be ordered.',
+        400
+      )
+    );
+  }
   const newOrder = await Order.create({
     buyer: req.user._id,
     seller: seller_id,
