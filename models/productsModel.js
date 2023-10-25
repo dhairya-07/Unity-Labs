@@ -3,11 +3,11 @@ const { Schema, model, default: mongoose } = require('mongoose');
 const productSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, 'A product should have a name'],
   },
   price: {
     type: Number,
-    required: true,
+    required: [true, 'A product should have a price'],
   },
 });
 
