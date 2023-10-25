@@ -55,11 +55,6 @@ const login = catchAsync(async (req, res, next) => {
   createSendToken(user, res, 200);
 });
 
-// const logout = catchAsync(async (req, res, next) => {
-//   res.clearCookie('jwt');
-//   return res.redirect('/api/v1/user/login');
-// });
-
 const protect = catchAsync(async (req, res, next) => {
   var token;
 
